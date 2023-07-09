@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Spring Web JPA</title>
 </head>
-<body>Spring Web JPA
+<body>
+	Spring Web JPA
+	<p>
+		<a href="mvc/person/">mvc/person/</a>
 </body>
 </html>

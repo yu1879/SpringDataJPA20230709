@@ -23,7 +23,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
 	List<Person> getByIdIn(List<Long> ids);
 
-	List<Person> getByBirthLessThen(Date birth);
+	List<Person> getByBirthLessThan(Date birth);
 
 	List<Person> getByBirthBetween(Date birthBegin, Date birthEnd);
 
