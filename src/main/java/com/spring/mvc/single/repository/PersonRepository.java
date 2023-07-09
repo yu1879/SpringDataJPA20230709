@@ -19,7 +19,7 @@ import com.spring.mvc.single.entity.Person;
 public interface PersonRepository extends JpaRepository<Person, Long> {
 	List<Person> getByName(String name);
 
-	List<Person> getByNameStartingWithAndIdGreaterThenEqual(String name, Long id);
+	List<Person> getByNameStartingWithAndIdGreaterThanEqual(String name, Long id);
 
 	List<Person> getBIdIn(List<Long> ids);
 
