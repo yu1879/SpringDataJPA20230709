@@ -27,7 +27,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
 	List<Person> getByBirthBetween(Date birthBegin, Date birthEnd);
 
-	@Query(nativeQuery = true, value = "select id, name, password, birth from person where id >= 1? and id <= 2? ")
+	@Query(nativeQuery = true, value = "select id, name, password, birth from person where id >= 1? and id <= 2?")
 	List<Person> findPeron(Long beginId, Long endId);
 
 }

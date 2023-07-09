@@ -14,7 +14,7 @@ import com.spring.mvc.single.entity.Person;
 import com.spring.mvc.single.repository.PersonRepository;
 
 @Controller
-@RequestMapping("/personS")
+@RequestMapping("/person")
 public class PersonController {
 	@Autowired
 	private PersonRepository personRepository;
@@ -29,8 +29,8 @@ public class PersonController {
 	}
 
 	@PostMapping("/")
-	public String index(@ModelAttribute Person person) {
-		List<Person> persons = personRepository.findAll();
+	public String create(@ModelAttribute Person person) {
+		// List<Person> persons = personRepository.findAll();
 //		model.addAttribute("_method", "POST");
 		personRepository.save(person);
 		// model.addAttribute("persons", persons);
