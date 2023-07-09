@@ -21,7 +21,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
 	List<Person> getByNameStartingWithAndIdGreaterThanEqual(String name, Long id);
 
-	List<Person> getBIdIn(List<Long> ids);
+	List<Person> getByIdIn(List<Long> ids);
 
 	List<Person> getByBirthLessThen(Date birth);
 
