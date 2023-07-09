@@ -14,7 +14,7 @@ import com.spring.mvc.single.entity.Person;
 import com.spring.mvc.single.repository.PersonRepository;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/personS")
 public class PersonController {
 	@Autowired
 	private PersonRepository personRepository;
