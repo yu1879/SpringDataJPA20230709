@@ -16,7 +16,7 @@ import com.spring.mvc.single.entity.Person;
  * 2. 涉及條件查詢時，條件的屬性（首字母大寫）用條件關鍵字（例如：And、Or）連結
  * */
 @Repository
-public interface PersnRepository extends JpaRepository<Person, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 	List<Person> getByName(String name);
 
 	List<Person> getByNameStartingWithAndIdGreaterThenEqual(String name, Long id);
