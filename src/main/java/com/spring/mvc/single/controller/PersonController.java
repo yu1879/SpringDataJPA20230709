@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.mvc.single.entity.Person;
@@ -46,7 +47,28 @@ public class PersonController {
 //		model.addAttribute("_method", "POST");
 		personRepository.save(person);
 		// model.addAttribute("persons", persons);
-		return "redirect:./";
+		return "redirect:./mvc/person";
 
 	}
+
+	@PutMapping("/")
+	public String update(@ModelAttribute Person person) {
+		if (personRepository.exists(person.getId())) {
+			personRepository.save(person);
+		}
+		return "redirect:./mvc/person";
+
+	}
+
+	@GetMapping("/delete/{id}")
+	public String deleteById(@PathVariable Long id) {
+		personRepository.delete(id);
+//		List<Person> persons = personRepository.findAll();
+//		model.addAttribute("person", person);
+//		model.addAttribute("_method", "PUT");
+//		model.addAttribute("persons", persons);
+		return "redirect:./mvc/person";
+
+	}
+
 }
