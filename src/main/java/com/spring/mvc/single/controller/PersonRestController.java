@@ -18,11 +18,16 @@ import com.spring.mvc.single.repository.PersonRepository;
 
 @RestController
 @RequestMapping("/rest/person")
-public class PersinRestController {
+public class PersonRestController {
 	@Autowired
 	private PersonRepository personRepository;
 
 	@GetMapping("/{id}")
+	public Person get(@PathVariable("id") long id) {
+		return personRepository.findOne(id);
+	}
+
+	@GetMapping("/")
 	public List<Person> queryAll() {
 		return personRepository.findAll();
 	}
