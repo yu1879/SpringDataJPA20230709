@@ -51,7 +51,7 @@ public class PersonController {
 //		model.addAttribute("_method", "POST");
 		personRepository.save(person);
 		// model.addAttribute("persons", persons);
-		return "redirect:./mvc/person";
+		return "redirect:/mvc/person/";
 
 	}
 
@@ -60,7 +60,7 @@ public class PersonController {
 		if (personRepository.exists(person.getId())) {
 			personRepository.save(person);
 		}
-		return "redirect:./mvc/person";
+		return "redirect:/mvc/person/";
 
 	}
 
@@ -71,7 +71,7 @@ public class PersonController {
 //		model.addAttribute("person", person);
 //		model.addAttribute("_method", "PUT");
 //		model.addAttribute("persons", persons);
-		return "redirect:./mvc/person";
+		return "redirect:/mvc/person/";
 
 	}
 
@@ -86,7 +86,7 @@ public class PersonController {
 		List<Person> persons = page.getContent();
 		model.addAttribute("persons", persons);
 		model.addAttribute("pageNo", pageNo);
-		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("totalPage", page.getTotalPages());
 		return "person/page";
 	}
 
