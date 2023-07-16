@@ -1,29 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!-- head -->
-<%@include file="../include/head.jspf"%>
-<title>Person page JPA</title>
+	<meta charset="UTF-8">
+	<!-- head -->
+	<%@include file="../include/head.jspf" %>
+	<title>Person page JPA</title>
 </head>
 <body style="padding: 15px">
 	<!-- Person page 分頁 -->
-	<form:form class="pure-form" method="get"
-		action="${ pageContext.request.contextPath }/mvc/person/page">
+	<form:form class="pure-form"
+				method="get"
+				action="${ pageContext.request.contextPath }/mvc/person/page">
 		<fieldset>
 			<legend>Person page 分頁</legend>
 			頁數：
-			<section name="no" onchange="this.form.submit()">
+			<select name="no" onchange="this.form.submit()">
 				<c:forEach var="no" begin="0" end="${ totalPage - 1 }">
-					<option value="${ no }" ${ no == pageNo ? "selected" : "" }>
-						${ no + 1 }</option>
+					<option value="${ no }" ${ no == pageNo ? "selected" : "" } >
+						${ no + 1 }
+					</option>
 				</c:forEach>
-			</section>
+			</select>
 		</fieldset>
-
+		
 	</form:form>
 	<!-- Person 列表 -->
 	<form class="pure-form">
@@ -49,6 +51,6 @@
 			</tbody>
 		</table>
 	</form>
-
+	
 </body>
 </html>

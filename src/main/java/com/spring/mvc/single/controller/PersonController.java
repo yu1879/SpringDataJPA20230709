@@ -2,6 +2,8 @@ package com.spring.mvc.single.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,8 +28,8 @@ public class PersonController {
 	private PersonRepository personRepository;
 
 	@GetMapping("/")
-	public String index(@ModelAttribute Person person, Model model) {
-		List<Person> persons = personRepository.findAll();
+	public String index(@ModelAttribute Person person, Model model,HttpSession httpSession) {
+		List<Person> persons = queryPagePersons(httpSession);
 		model.addAttribute("_method", "POST");
 		model.addAttribute("persons", persons);
 		return "person/index";
@@ -35,9 +37,10 @@ public class PersonController {
 	}
 
 	@GetMapping("/{id}")
-	public String getPersonById(@PathVariable Long id, Model model) {
+	public String getPersonById(@PathVariable Long id, Model model,HttpSession httpSession) {
 		Person person = personRepository.findOne(id);
-		List<Person> persons = personRepository.findAll();
+//		List<Person> persons = personRepository.findOne(id);
+		List<Person> persons = queryPagePersons(httpSession);
 		model.addAttribute("person", person);
 		model.addAttribute("_method", "PUT");
 		model.addAttribute("persons", persons);
@@ -88,6 +91,31 @@ public class PersonController {
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("totalPage", page.getTotalPages());
 		return "person/page";
+//		return "person/index";
+	}
+
+	@GetMapping("/page2")
+	public String page2(@RequestParam(name = "no", required = false, defaultValue = "0") Integer no,
+			HttpSession httpSession) {
+		httpSession.setAttribute("pageNo", no);
+		return "redirect:/mvc/person/";
+	}
+
+	private List<Person> queryPagePersons(HttpSession httpSession) {
+		int pageNo = 0;
+		Object pageObj = httpSession.getAttribute("pageNo");
+		if (pageObj instanceof Integer) {
+			pageNo = (Integer) pageObj;
+		}
+		int pageSize = 5;
+		Sort.Order order = new Sort.Order(Sort.Direction.ASC, "id");
+		Sort sort = new Sort(order);
+		PageRequest pageRequest = new PageRequest(pageNo, pageSize, sort);
+		Page<Person> page = personRepository.findAll(pageRequest);
+		List<Person> persons = page.getContent();
+		httpSession.setAttribute("totalPage", page.getTotalPages());
+		return persons;
+
 	}
 
 }
