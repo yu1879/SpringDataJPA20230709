@@ -28,7 +28,7 @@ public class Person {
 	@Column
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-NN-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 
 	public Long getId() {
